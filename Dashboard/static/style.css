@@ -1,0 +1,18 @@
+body{
+    background-image: url('/static/database-systems.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: inherit;
+    }
+.coverchart{
+  width:700px;height:30%;  margin-left: 55%;margin-top: 12%;    
+}
+#chart{
+  background-color: wheat; height: 500px;
+  border-radius: 15px;
+}
+.text-header{
+  color: #00e61d;
+  text-align: center;
+  font-size: 3rem;
+}
