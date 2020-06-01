@@ -4,15 +4,15 @@ import requests
 import requests_oauthlib
 import json
 
-# Replace the values below with yours
-ACCESS_TOKEN = '1702354878-STbGjleJhdeSNX0YmZC45nVj8DqRXwy45qpqQct'
-ACCESS_SECRET = 'NXD5bbKEukrOqHXqwvegDHK1WiluSN7ilbimFMKOaiSzF'
-CONSUMER_KEY = 'SD4qJR2Ryyn04D1s3PCDN77St'
-CONSUMER_SECRET = 'lizXZVtGq9lxhU8vQGXgRRb90P6diwjobG9nTzleXqKyd5IWbV'
+# Token access API
+ACCESS_TOKEN = '1024537560125648896-Bb9QdAOyhfmMFcDXX9TZStPVyihQYA'
+ACCESS_SECRET = '4n5or8oS5PlrTEHVK8OOf46fZAZqGfrLaBH4AG0f2R9BN'
+CONSUMER_KEY = 'vEhTyKeZfpMmdqbLmUNMsM8yA'
+CONSUMER_SECRET = 'IDKxxdYyzvyBricqeRq7ko5D1SV8f4PHfZESG4qGNiOAQDhLcT'
 
 my_auth = requests_oauthlib.OAuth1(CONSUMER_KEY, CONSUMER_SECRET,ACCESS_TOKEN, ACCESS_SECRET)
 
-
+# Sent data tweet to spark_app
 def send_tweets_to_spark(http_resp, tcp_connection):
     for line in http_resp.iter_lines():
         try:
@@ -34,11 +34,10 @@ def send_tweets_to_spark(http_resp, tcp_connection):
             e = sys.exc_info()[0]
             print("Error: %s" % e)
 
-
+# Get data tweet follow language, location, and track '#' (is hashtags)
 def get_tweets():
     url = 'https://stream.twitter.com/1.1/statuses/filter.json'
-    query_data = [('language', 'en'), ('locations', '-130,-20,100,50'),('track','#')]
-    # query_data = [(locations', '-122.75,36.8,-121.75,37.8,-74,40,-73,41'), ('track', '#')] #this location value is San Francisco & NYC
+    query_data = [('language', 'en'), ('locations', '-122.75,36.8,-122.451816,37.763006,-74,40,-73,41'),('track','#')] #San Francisco & NYC
     query_url = url + '?' + '&'.join([str(t[0]) + '=' + str(t[1]) for t in query_data])
     response = requests.get(query_url, auth=my_auth, stream=True)
     print(query_url, response)
